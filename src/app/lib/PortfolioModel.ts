@@ -1,6 +1,7 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
 export interface IExperience {
+  _id?:string;
   title: string;
   company?: string;
   location?: string;
@@ -10,6 +11,7 @@ export interface IExperience {
 }
 
 export interface IProject {
+  _id?:string;
   name: string;
   description?: string;
   technologies: string[];
@@ -18,11 +20,10 @@ export interface IProject {
   demoUrl?: string;
 }
 
-export interface IPortfolio extends Document {
-  about: string;
-  experience: IExperience[];
-  projects: IProject[];
-}
+
+const aboutSchema = new Schema({
+  aboutme: { type: String, required: true },
+});
 
 const experienceSchema = new Schema<IExperience>({
   title: { type: String, required: true },
@@ -42,12 +43,9 @@ const projectSchema = new Schema<IProject>({
   demoUrl: { type: String },
 });
 
-const portfolioSchema = new Schema<IPortfolio>({
-  about: { type: String, required: true },
-  experience: [experienceSchema],
-  projects: [projectSchema],
-});
 
-const Portfolio = mongoose.model<IPortfolio>('Portfolio', portfolioSchema);
+const AboutModel = mongoose.models.About || mongoose.model('About', aboutSchema);
+const ProjectModel = mongoose.models.Project || mongoose.model<IProject>('Project', projectSchema);
+const ExperienceModel = mongoose.models.Experience || mongoose.model<IExperience>('Experience', experienceSchema);
 
-export default Portfolio;
+export { AboutModel, ProjectModel, ExperienceModel };
