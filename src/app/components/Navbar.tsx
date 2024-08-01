@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import Footer from "./Footer";
 
 // Define the Navbar component
 export default function Navbar() {
@@ -114,6 +115,9 @@ export default function Navbar() {
         <Link href="#about" className={`nav-link text-lg hidden lg:block ${activeSection === 'about' ? 'font-bold text-white underline' : ''}`} onClick={(e) => scrollToSection(e, 'about')}>About</Link>
         <Link href="#experience" className={`nav-link text-lg mt-2 hidden lg:block ${activeSection === 'experience' ? 'font-bold text-white underline' : ''}`} onClick={(e) => scrollToSection(e, 'experience')}>Experience</Link>
         <Link href="#projects" className={`nav-link text-lg mt-2 hidden lg:block ${activeSection === 'projects' ? 'font-bold text-white underline' : ''}`} onClick={(e) => scrollToSection(e, 'projects')}>Projects</Link>
+        <div className="mt-12">
+          <Footer />
+        </div>
       </div>
     </nav>
   );

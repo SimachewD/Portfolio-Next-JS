@@ -4,7 +4,7 @@
 
 import React, { useState } from 'react';
 import ProjectForm from './ProjectForm';
-import useFetchProject from '../hooks/useFetchProject';
+import useFetchProject from '../../hooks/useFetchProject';
 
 export default function Projects() {
   const { data, loading, error } = useFetchProject();
@@ -25,12 +25,12 @@ export default function Projects() {
 
   return (
     <div>
-        <div className='sm:grid grid-cols-3 gap-3'>
+        <div className='xl:grid xl:grid-cols-3 gap-3'>
           {data.map((project) => (
             <div key={project._id} className='mb-10'>
               <h1>{project.name}</h1>
               <p>{project.description}</p>
-              <p className='flex'>{project.technologies.map((tech)=>(<p key={tech} className='mr-2 font-semibold'>{tech},</p>))}</p>
+              <p className=''>{project.technologies.map((tech)=>(<li key={tech} className='mr-2 font-semibold'>{tech}</li>))}</p>
               <p>{project.imageUrl}</p>
               <p>{project.githubUrl}</p>
               <p>{project.demoUrl}</p>

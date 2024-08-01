@@ -2,7 +2,7 @@
 "use client"
 
 import React, { useState } from 'react';
-import useFetchExperience from '@/app/admin/hooks/useFetchExperience';
+import useFetchExperience from '@/app/hooks/useFetchExperience';
 import ExperienceForm from './ExperienceForm';
 
 export default function Experience() {
@@ -24,7 +24,7 @@ export default function Experience() {
 
   return (
     <section>
-      <div className='sm:grid grid-cols-3 gap-3'>
+      <div className='xl:grid xl:grid-cols-3 gap-3'>
         {data.map((expr) => (
           <div key={expr._id} className='mb-10'>
             <h1>{expr.title}</h1>

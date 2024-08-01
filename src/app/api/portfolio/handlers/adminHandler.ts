@@ -9,10 +9,11 @@ export async function updateAbout(request: Request) {
     await dbConnect();
     
     try {
-        const { aboutme } = await request.json(); 
+        const { aboutme } = await request.json();
+        console.log(aboutme) 
         const update =  await AboutModel.findOneAndUpdate({aboutme});
         if(update){
-            return NextResponse.json({ message: 'Successfully inserted about data', update });
+            return NextResponse.json({ message: 'Successfully inserted about data'});
         }
         
     } catch (error) {

@@ -1,6 +1,5 @@
 
 
-import { NextResponse } from "next/server";
 import { updateAbout } from "../handlers/adminHandler";
 import { getAbout } from "../handlers/clientHandler";
 
