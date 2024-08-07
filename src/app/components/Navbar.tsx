@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import Footer from "./Footer";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAddressCard, faCode, faListCheck } from "@fortawesome/free-solid-svg-icons";
 
 // Define the Navbar component
 export default function Navbar() {
@@ -72,7 +74,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="lg:col-span-2 text-center lg:h-screen lg:sticky top-0">
+    <nav className="text-center lg:h-screen lg:sticky top-0">
       {/* Flashlight beam */}
       <div
         id="flashlight"
@@ -111,12 +113,13 @@ export default function Navbar() {
       </p>
       
       {/* Navigation links */}
-      <div className="mt-8 lg:items-center lg:space-x-4 lg:pr-4">
-        <Link href="#about" className={`nav-link text-lg hidden lg:block ${activeSection === 'about' ? 'font-bold text-white underline' : ''}`} onClick={(e) => scrollToSection(e, 'about')}>About</Link>
-        <Link href="#experience" className={`nav-link text-lg mt-2 hidden lg:block ${activeSection === 'experience' ? 'font-bold text-white underline' : ''}`} onClick={(e) => scrollToSection(e, 'experience')}>Experience</Link>
-        <Link href="#projects" className={`nav-link text-lg mt-2 hidden lg:block ${activeSection === 'projects' ? 'font-bold text-white underline' : ''}`} onClick={(e) => scrollToSection(e, 'projects')}>Projects</Link>
+      <div className="mt-8 text-lg lg:items-center lg:space-x-4 lg:p-4">
+        <Link href="#about" className={`nav-link hidden lg:block ${activeSection === 'about' ? 'font-bold text-white underline' : ''}`} onClick={(e) => scrollToSection(e, 'about')}><FontAwesomeIcon icon={faAddressCard} className="mr-2 text-lg"/>About</Link>
+        <Link href="#experience" className={`nav-link mt-2 hidden lg:block ${activeSection === 'experience' ? 'font-bold text-white underline' : ''}`} onClick={(e) => scrollToSection(e, 'experience')}><FontAwesomeIcon icon={faCode} className="mr-2"/>Experience</Link>
+        <Link href="#projects" className={`nav-link mt-2 hidden lg:block ${activeSection === 'projects' ? 'font-bold text-white underline' : ''}`} onClick={(e) => scrollToSection(e, 'projects')}><FontAwesomeIcon icon={faListCheck} className="mr-2"/>Projects</Link>
         <div className="mt-12">
           <Footer />
+          +251927180474 | +251936323536
         </div>
       </div>
     </nav>

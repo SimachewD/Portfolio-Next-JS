@@ -1,47 +1,20 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 
 const ProjectForm = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [technologies, setTechnologies] = useState<string[]>([]);
   const [technology, setTechnology] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
+  const [file, setFile] = useState<File | null>(null);
   const [githubUrl, setGithubUrl] = useState('');
   const [demoUrl, setDemoUrl] = useState('');
+  const [sending, setSending] = useState<boolean>(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const newProject = {
-      name,
-      description,
-      technologies,
-      imageUrl,
-      githubUrl,
-      demoUrl,
-    };
-
-    const response = await fetch('http://localhost:3000/api/portfolio/projects', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newProject),
-    });
-
-    if (response.ok) {
-      alert('Project added successfully!');
-      // Clear the form
-      setName('');
-      setDescription('');
-      setTechnologies([]);
-      setImageUrl('');
-      setGithubUrl('');
-      setDemoUrl('');
-    } else {
-      alert('Failed to add project.');
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
     }
   };
 
@@ -54,6 +27,41 @@ const ProjectForm = () => {
 
   const handleRemoveTechnology = (tech: string) => {
     setTechnologies(technologies.filter(t => t !== tech));
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setSending(true);
+
+    const formData = new FormData();
+    if (file) formData.append('file', file);
+    formData.append('name', name);
+    formData.append('description', description);
+    formData.append('technologies', JSON.stringify(technologies));
+    formData.append('githubUrl', githubUrl);
+    formData.append('demoUrl', demoUrl);
+
+    const res = await fetch('http://localhost:3000/api/portfolio/projects', {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      alert('Project added successfully!');
+
+      // Clear the form
+      setName('');
+      setDescription('');
+      setTechnologies([]);
+      setFile(null);
+      setGithubUrl('');
+      setDemoUrl('');
+      setSending(false);
+    } else {
+      alert('Failed to add project.');
+      setSending(false)
+    }
   };
 
   return (
@@ -113,12 +121,11 @@ const ProjectForm = () => {
         </div>
       </div>
       <div>
-        <label htmlFor='imageUrl' className='block text-sm font-medium text-gray-700'>Image URL</label>
+        <label htmlFor='file' className='block text-sm font-medium text-gray-700'>Image</label>
         <input
-          type='url'
-          id='imageUrl'
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
+          type="file"
+          id="file"
+          onChange={handleFileChange}
           className='text-black mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
         />
       </div>

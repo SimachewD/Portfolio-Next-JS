@@ -10,14 +10,11 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 export default function Projects() {
 
-
   const { data, loading, error } = useFetchProject();
-
 
   if (loading) {
     return <p className='mt-5 font-bold'>Loading...</p>;
   }
-
   if (error) {
     return <p className='mt-5 font-bold text-red-700'>Error: {error}</p>;
   }
@@ -28,15 +25,15 @@ export default function Projects() {
         {data.map((project) => (
           <div key={project._id} className='flex flex-col-reverse break-words lg:flex-row w-full px-5 mb-6 hover:bg-sky-950'>
               <Image 
-                src="/path/to/your/image.jpg" 
+                src={project.imageUrl || "demo.jpg"}
                 alt="Project image"
                 width={500}
-                height={200}
-                className='lg:w-1/4 lg:h-full'
+                height={500}
+                className='lg:mt-3 lg:mr-3 lg:w-1/4 lg:h-full'
               />            
-              <div className='mb-3 w-3/4'>
+              <div className='mb-3 lg:w-3/4'>
                 <div className='flex justify-between'>
-                  <h3 className='mr-10'>{project.name}</h3>
+                  <h3 className='mr-10 text-white'>{project.name}</h3>
                   <div className='w-fit'>
                       <a href={project.githubUrl} className='mr-3 hover:text-teal-200 hover:text-lg'><FontAwesomeIcon icon={faGithub} /></a>
                       <a href={project.demoUrl} className='hover:text-teal-200 hover:text-lg'>visit<FontAwesomeIcon icon={faArrowRight} /></a>
