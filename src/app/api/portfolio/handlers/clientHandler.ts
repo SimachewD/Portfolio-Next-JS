@@ -7,8 +7,12 @@ export async function getAbout(request: Request) {
 
   await dbConnect();
 
-  const about = await AboutModel.findOne();
-  return NextResponse.json({about});
+  try {
+    const about = await AboutModel.findOne();
+    return NextResponse.json({about});
+  } catch (error) {
+    console.log(error);
+  }
 
 }
 

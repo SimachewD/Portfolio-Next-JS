@@ -116,7 +116,7 @@ export default function Navbar() {
       <div className="mt-8 text-lg lg:items-center lg:space-x-4 lg:p-4">
         <Link href="#about" className={`nav-link hidden lg:block ${activeSection === 'about' ? 'font-bold text-white underline' : ''}`} onClick={(e) => scrollToSection(e, 'about')}><FontAwesomeIcon icon={faAddressCard} className="mr-2 text-lg"/>About</Link>
         <Link href="#experience" className={`nav-link mt-2 hidden lg:block ${activeSection === 'experience' ? 'font-bold text-white underline' : ''}`} onClick={(e) => scrollToSection(e, 'experience')}><FontAwesomeIcon icon={faCode} className="mr-2"/>Experience</Link>
-        <Link href="#projects" className={`nav-link mt-2 hidden lg:block ${activeSection === 'projects' ? 'font-bold text-white underline' : ''}`} onClick={(e) => scrollToSection(e, 'projects')}><FontAwesomeIcon icon={faListCheck} className="mr-2"/>Projects</Link>
+        <Link href="#projects" className={`nav-link mt-2 hidden lg:block ${activeSection === 'projects' ? 'font-bold text-white underline' : ''}`} onClick={(e) => scrollToSection(e, 'projects')}><FontAwesomeIcon icon={faListCheck} className="mr-2"/>Portfolio</Link>
         <div className="mt-12">
           <Footer />
           +251927180474 | +251936323536

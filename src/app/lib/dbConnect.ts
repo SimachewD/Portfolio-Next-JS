@@ -7,7 +7,7 @@ async function dbConnect() {
     const MONGO_URI = process.env.MONGO_URI;
 
     if (!MONGO_URI) {
-        return NextResponse.json({Error: 'Please define the MONGODB_URI environment variable inside .env.local'});
+        return NextResponse.json({Error: 'Please define the MONGODB_URI environment variable inside .env.'});
     }
 
 
@@ -19,5 +19,5 @@ async function dbConnect() {
     }
 }
 
-export default dbConnect;
+export default dbConnect;  
 

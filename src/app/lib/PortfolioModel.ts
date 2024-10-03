@@ -1,5 +1,11 @@
 import mongoose, { Schema } from 'mongoose';
 
+export interface IUser {
+  _id?:string;
+  email: string;
+  password?: string;
+}
+
 export interface IExperience {
   _id?:string;
   title: string;
@@ -20,6 +26,11 @@ export interface IProject {
   demoUrl?: string;
 }
 
+
+const userSchema = new Schema<IUser>({
+  email: { type: String, required: true },
+  password: { type: String, required: true },
+});
 
 const aboutSchema = new Schema({
   aboutme: { type: String, required: true },
@@ -44,8 +55,9 @@ const projectSchema = new Schema<IProject>({
 });
 
 
+const UserModel = mongoose.models.User || mongoose.model('User', userSchema);
 const AboutModel = mongoose.models.About || mongoose.model('About', aboutSchema);
 const ProjectModel = mongoose.models.Project || mongoose.model<IProject>('Project', projectSchema);
 const ExperienceModel = mongoose.models.Experience || mongoose.model<IExperience>('Experience', experienceSchema);
 
-export { AboutModel, ProjectModel, ExperienceModel };
+export { UserModel, AboutModel, ProjectModel, ExperienceModel };
