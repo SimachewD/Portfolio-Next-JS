@@ -3,12 +3,13 @@
 
 import React from 'react'
 import useFetchAbout from '../hooks/useFetchAbout'
+import Skeleton from './skeleton';
 
 export default function About() {
   const { aboutData, loading, error } = useFetchAbout();
 
   if (loading) {
-    return <p className='mt-5 font-bold'>Loading...</p>;
+    return <Skeleton width="full" height="h-48" />;
   }
 
   if (error) {

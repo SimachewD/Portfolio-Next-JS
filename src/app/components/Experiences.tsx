@@ -5,6 +5,7 @@ import React from 'react'
 import useFetchExperience from '../hooks/useFetchExperience';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBuilding, faLocation, faLocationArrow, faLocationDot, faLocationPin } from '@fortawesome/free-solid-svg-icons';
+import Skeleton from './skeleton';
 
 export default function Experiences() {
 
@@ -12,7 +13,7 @@ export default function Experiences() {
 
 
   if (loading) {
-    return <p className='mt-5 font-bold'>Loading...</p>;
+    return <Skeleton width="full" height="h-60" />;
   }
 
   if (error) {
@@ -24,7 +25,7 @@ export default function Experiences() {
     const options: Intl.DateTimeFormatOptions = { month: 'long', year: 'numeric' };
     return new Intl.DateTimeFormat('en-US', options).format(date);
 }
-
+ 
   return (
     <div id='experience' className='mt-24'>
       <h2 className='lg:hidden text-white px-5 mb-5 text-lg font-bold'>Experiences</h2>

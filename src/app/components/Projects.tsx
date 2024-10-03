@@ -7,13 +7,14 @@ import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import Skeleton from './skeleton';
 
 export default function Projects() {
 
   const { data, loading, error } = useFetchProject();
 
   if (loading) {
-    return <p className='mt-5 font-bold'>Loading...</p>;
+    return <Skeleton width="full" height="h-72" />;
   }
   if (error) {
     return <p className='mt-5 font-bold text-red-700'>Error: {error}</p>;

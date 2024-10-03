@@ -16,7 +16,7 @@ export default function useFetchAbout() {
         const res = await fetch('http://localhost:3000/api/portfolio/about');
 
         if (!res.ok) {
-          throw new Error('Failed to fetch about data');
+          throw new Error("Couldn't fetch, Please check your connection");
         }
 
         const data = await res.json();

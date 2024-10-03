@@ -11,7 +11,7 @@ const useFetchProject = () => {
       try {
         const res = await fetch('http://localhost:3000/api/portfolio/projects');
         if (!res.ok) {
-          throw new Error('Failed to fetch project data');
+          throw new Error("Couldn't fetch, Please check your connection");
         }
         const result = await res.json();
         setData(result.data);

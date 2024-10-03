@@ -11,7 +11,7 @@ const useFetchExperience = () => {
       try {
         const res = await fetch('http://localhost:3000/api/portfolio/experience');
         if (!res.ok) {
-          throw new Error('Failed to fetch experience data');
+          throw new Error("Couldn't fetch, Please check your connection");
         }
         const result = await res.json();
         setData(result.data);
