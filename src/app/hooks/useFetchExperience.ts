@@ -9,7 +9,7 @@ const useFetchExperience = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/portfolio/experience');
+        const res = await fetch('/api/portfolio/experience');
         if (!res.ok) {
           throw new Error("Couldn't fetch, Please check your connection");
         }

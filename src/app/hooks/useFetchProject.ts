@@ -9,7 +9,7 @@ const useFetchProject = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/portfolio/projects');
+        const res = await fetch('/api/portfolio/projects');
         if (!res.ok) {
           throw new Error("Couldn't fetch, Please check your connection");
         }

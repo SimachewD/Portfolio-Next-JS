@@ -91,7 +91,10 @@ export async function signout() {
       throw new Error('Failed to log out.');
     }
 
-    redirect('/auth/signin'); // On success
+    // Return success if no errors
+    return {
+      success: true,
+    };
   } catch (error) {
     console.error('Sign out error:', error);
     // Optionally handle sign out errors here
